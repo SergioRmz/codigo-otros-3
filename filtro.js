@@ -8,9 +8,9 @@ const productos = [
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ];
 
-// Modifica el nombre de las variables por unas mas significativas.
+// Modifica el nombre de las variables por unos mas significativos.
 
-// Cambio en el metodo del objeto document
+// Cambio en el metodo del objeto document.
 const lista = document.querySelector("#lista-de-productos");
 const input = document.querySelector("#input");
 
@@ -47,13 +47,12 @@ botonDeFiltro.onclick = function() {
   // Se añade el metodo para convertir el input del usuario a minusculas.
   let texto =  input.value.toLowerCase();
   console.log(texto);
-  let productosFiltrados = 0;
-
-  // Validaciones, si el dato introducido es un numero, vuelve a mostrar los productos.Si no lo es llama a la funcion productosFiltrados.
+  let productosFiltrados = [];
+  // Validaciones, si el dato introducido no es un numero llama a la función productosFiltrados de lo contrario llama a la función displayProductos.
   isNaN(texto) ? productosFiltrados = filtrado(productos, texto) : displayProductos(productos);
   
   
-  // Cambio el nombre de las variables por algo significativo.
+  // Cambio el nombre de las variables por nombres más significativos.
 
   for (let i = 0; i <  productosFiltrados.length; i++) {
     var div = document.createElement("div")
