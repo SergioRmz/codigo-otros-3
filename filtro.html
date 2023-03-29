@@ -12,13 +12,16 @@
 <body>
 
   <div>
-      <input type="text" placeholder="Seleccioná un color o tipo">
-      <button>Filtrar</button>
+    <!-- Se añade id al input para llamarlo desde otros archivos -->
+      <input type="text" placeholder="Seleccioná un color o tipo" id="input">
+      <!-- Se añade id al buton para llamarlo desde otros archivos -->
+      <button id="button">Filtrar</button>
       <h1>Lista de productos </h1>
       <div id="lista-de-productos">
     </div>
   </div>
-  <script src="../filtro.js"></script>
+  <!-- Correccion en la ruta del archivo -->
+  <script src="filtro.js"></script>
 </body>
 
 </html>

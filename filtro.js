@@ -6,55 +6,70 @@ const productos = [
   {nombre: "Bota negra", tipo: "bota", color: "negro", img: "./bota-negra.jpg"},
   {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
-]
+];
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+// Modifica el nombre de las variables por unas mas significativas.
 
-for (let i = 0; i < productos.length; i++) {
-  var d = document.createElement("div")
-  d.classList.add("producto")
+// Cambio en el metodo del objeto document
+const lista = document.querySelector("#lista-de-productos");
+const input = document.querySelector("#input");
 
-  var ti = document.createElement("p")
-  ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
+// Declaracion de la funcion displayProductos.
+const displayProductos = (productos) =>{
+  for (let i = 0; i < productos.length; i++) {
+    var div = document.createElement("div");
+    div.classList.add("producto");
   
-  var imagen = document.createElement("img");
-  imagen.setAttribute('src', productos[i].img);
+    var titulo = document.createElement("p");
+    titulo.classList.add("titulo");
+    titulo.textContent = productos[i].nombre;
+    
+    var imagen = document.createElement("img");
+    imagen.setAttribute('src', productos[i].img);
+  
+    div.appendChild(titulo)
+    div.appendChild(imagen)
+  
+    lista.appendChild(div)
+  }
+};
 
-  d.appendChild(ti)
-  d.appendChild(imagen)
 
-  li.appendChild(d)
-}
+displayProductos(productos);
 
-displayProductos(productos)
-const botonDeFiltro = document.querySelector("button");
+let botonDeFiltro = document.querySelector("#button");
 
 botonDeFiltro.onclick = function() {
-  while (li.firstChild) {
-    li.removeChild(li.firstChild);
+  while (lista.firstChild) {
+    lista.removeChild(lista.firstChild);
   }
 
-  const texto = $i.value;
+  // Se añade el metodo para convertir el input del usuario a minusculas.
+  let texto =  input.value.toLowerCase();
   console.log(texto);
-  const productosFiltrados = filtrado(productos, texto );
+  let productosFiltrados = 0;
 
-  for (let i = 0; i < productosFiltrados.length; i++) {
-    var d = document.createElement("div")
-    d.classList.add("producto")
+  // Validaciones, si el dato introducido es un numero, vuelve a mostrar los productos.Si no lo es llama a la funcion productosFiltrados.
+  isNaN(texto) ? productosFiltrados = filtrado(productos, texto) : displayProductos(productos);
   
-    var ti = document.createElement("p")
-    ti.classList.add("titulo")
-    ti.textContent = productosFiltrados[i].nombre
+  
+  // Cambio el nombre de las variables por algo significativo.
+
+  for (let i = 0; i <  productosFiltrados.length; i++) {
+    var div = document.createElement("div")
+    div.classList.add("producto")
+  
+    var titulo = document.createElement("p")
+    titulo.classList.add("titulo")
+    titulo.textContent = productosFiltrados[i].nombre
     
     var imagen = document.createElement("img");
     imagen.setAttribute('src', productosFiltrados[i].img);
   
-    d.appendChild(ti)
-    d.appendChild(imagen)
+    div.appendChild(titulo);
+    div.appendChild(imagen);
   
-    li.appendChild(d)
+    lista.appendChild(div);
   }
 }
 
